@@ -18,17 +18,20 @@ void setup() {
 void draw() {
   background(30);
   for (int i = 0; i < points.length; i++) {
+    int[] pos = points[i];
+    int factor = 5;
+    int tx = (int)random(-factor, factor);
+    int ty = (int)random(-factor, factor);
+    pos[0] += tx;
+    pos[1] += ty;
     int radius = 3;
     fill(255);
-    ellipse(points[i][0], points[i][1], radius, radius);
-  }
-  for (int i = 0; i < points.length; i++) {
-    int[] pos = points[i];
+    ellipse(pos[0], pos[1], radius, radius);
     //int[] nearest = nearest(pos[0], pos[1]);
     //stroke(255);
     //line(pos[0], pos[1], nearest[0], nearest[1]);
-    int[][] near = near(pos[0], pos[1], 3);
-    for(int j = 0; j < near.length; j++) {
+    int[][] near = near(pos[0], pos[1], 4);
+    for(int j = 1; j < near.length; j++) {
       stroke(255);
       line(pos[0], pos[1], near[j][0], near[j][1]);
     }
